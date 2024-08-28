@@ -4,7 +4,7 @@ export const Dice = ({diceSide}) => {
     return (
         <>
             <span className={style.diceStyling}>
-                <p>2</p>
+                <p>{diceSide}</p>
             </span>
         </>
     )

@@ -14,6 +14,13 @@ body {
     src: url(./assets/breakingBad.otf);
   }
 
+  .element-container {
+    background: darkgreen;
+    display: inline-block;
+    width: 62px;
+    height: 75px;
+  }
+
   .dice-container {
     display: flex;
     flex-direction: column;
@@ -25,21 +32,6 @@ body {
 
     h3 {
       margin: 0;
-    }
-
-    button {
-      border: 0;
-      background: #1c1c1c;
-      border-radius: 6px;
-      font-size: 23px;
-      width: 8rem;
-      height: 1.7rem;
-      color: #fff;
-
-      &:hover {
-        scale: 1.1;
-        cursor: pointer;
-      }
     }
   }
 }
