@@ -11,4 +11,10 @@
     border-radius: 7px;
     font-family: sans-serif;
     text-shadow: none;
+
+    &.dealerDice {
+        margin-left: 19rem;
+        position: absolute;
+        top: 35%;
+    }
 }

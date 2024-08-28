@@ -4,6 +4,7 @@ import { Button } from "./components/Button/Button";
 import { Dice } from "./components/Dice/Dice";
 import { GameBoard } from "./components/GameBoard/GameBoard";
 import "./App.scss";
+import { GameRules } from './components/GameRules/GameRules';
 
 function App() {
   const [playerDiceSide, setPlayerDiceSide] = useState();
@@ -32,10 +33,14 @@ function App() {
     <>
       <GameBoard>
         <h1><span className='element-container'>5</span>eaking <span className='element-container'>B</span>lackjack</h1>
+        <GameRules />
         <section>
-          <div className="dice-container">
-            <h3>dealers dice</h3>
-            <Dice diceSide={dealerDiceSide}/>
+          <div className="dice-container dealer-styling">
+            <span className='dealer-container'>
+              <img src='./src/assets/Heisenberg.jpg' alt='Heisenberg'/>
+              <h3>dealers dice</h3>
+            </span>
+            <Dice diceSide={dealerDiceSide} type='dealerDice'/>
           </div>
           <div className="dice-container">
             <h3>players dice</h3>
