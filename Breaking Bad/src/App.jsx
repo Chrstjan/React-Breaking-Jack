@@ -1,9 +1,16 @@
 import "./App.scss";
+import { GameBoard } from "./components/GameBoard/GameBoard";
 
 function App() {
   return (
     <>
-      <h1>React Boilerplate</h1>
+      <GameBoard>
+        <h1>Breaking Blackjack</h1>
+        <section>
+          <h3>dealers dice</h3>
+          <h3>players dice</h3>
+        </section>
+      </GameBoard>
     </>
   );
 }
