@@ -7,8 +7,11 @@ import "./App.scss";
 import { GameRules } from './components/GameRules/GameRules';
 
 function App() {
-  const [playerDiceSide, setPlayerDiceSide] = useState();
-  const [dealerDiceSide, setDealerDiceSide] = useState();
+  const [playerDiceSide, setPlayerDiceSide] = useState(0);
+  const [dealerDiceSide, setDealerDiceSide] = useState(0);
+
+  const [playerScore, setPlayerScore] = useState(0);
+  const [dealerScore, setDealerScore] = useState(0);
 
   const [dealersTurn, setDealersTurn] = useState(true);
 
@@ -19,9 +22,10 @@ function App() {
   }
 
   const handleDealerDiceThrow = () => {
-    const randNum = Math.floor(Math.random() * 6) + 1;
+    const randNum = Math.floor(Math.random() * 6);
     setDealerDiceSide(randNum);
     setDealersTurn(false);
+    setDealerScore((prevScore) => prevScore + randNum);
   }
 
   useEffect(() => {
@@ -47,6 +51,7 @@ function App() {
             <Dice diceSide={playerDiceSide}/>
             <Button action={handleDiceThrow}/>
           </div>
+          <p>Dealer: {dealerScore}</p>
         </section>
       </GameBoard>
     </>

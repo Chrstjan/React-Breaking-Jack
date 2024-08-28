@@ -17,7 +17,7 @@ export const GameRules = () => {
                     <h2>Blackjack with dices</h2>
                 </span>
                 <p>Game rules text here</p>
-                <button onClick={() => handleCloseModal()}>Start Game</button>
+                <button onClick={() => handleCloseModal()}>Start Gme</button>
             </div> : null}
             
         </>
