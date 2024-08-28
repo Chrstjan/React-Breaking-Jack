@@ -1,4 +1,5 @@
 import "./App.scss";
+import { Dice } from "./components/Dice/Dice";
 import { GameBoard } from "./components/GameBoard/GameBoard";
 
 function App() {
@@ -7,8 +8,15 @@ function App() {
       <GameBoard>
         <h1>Breaking Blackjack</h1>
         <section>
-          <h3>dealers dice</h3>
-          <h3>players dice</h3>
+          <div className="dice-container">
+            <h3>dealers dice</h3>
+            <Dice />
+          </div>
+          <div className="dice-container">
+            <h3>players dice</h3>
+            <Dice />
+            <button>roll dice</button>
+          </div>
         </section>
       </GameBoard>
     </>
