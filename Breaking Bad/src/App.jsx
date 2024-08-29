@@ -5,6 +5,7 @@ import { Dice } from "./components/Dice/Dice";
 import { GameBoard } from "./components/GameBoard/GameBoard";
 import "./App.scss";
 import { GameRules } from "./components/GameRules/GameRules";
+import { GameOver } from "./components/GameOver/GameOver";
 
 function App() {
   const [playerDiceSide, setPlayerDiceSide] = useState(0);
@@ -14,6 +15,8 @@ function App() {
   const [dealerScore, setDealerScore] = useState(0);
 
   const [dealersTurn, setDealersTurn] = useState(false);
+
+  const [gameOver, setGameOver] = useState(false);
 
   const handleDiceThrow = () => {
     const randNumber = Math.floor(Math.random() * 6) + 1;
@@ -38,22 +41,34 @@ function App() {
   useEffect(() => {
     if (dealerScore === 21 && playerScore !== 21) {
       console.log("Dealer Wins!");
+      setGameOver(true);
     }
 
     if (dealerScore > 21) {
       console.log("Dealer bust!");
+      setGameOver(true);
     }
   }, [dealerScore]);
 
   useEffect(() => {
     if (playerScore === 21 && dealerScore !== 21) {
       console.log("Player Wins!");
+      setGameOver(true);
     }
 
     if (playerScore > 21) {
       console.log("Player bust");
+      setGameOver(true);
     }
   }, [playerScore]);
+
+  useEffect(() => {
+    if (!gameOver) {
+      console.log("Game Starting");
+    } else {
+      console.log("Game Over");
+    }
+  }, [gameOver]);
 
   return (
     <>
@@ -74,12 +89,13 @@ function App() {
           <div className="dice-container">
             <h3>players dice</h3>
             <Dice diceSide={playerDiceSide} />
-            <Button action={handleDiceThrow} />
+            <Button gameOver={gameOver} action={handleDiceThrow} />
           </div>
           {/* <p>Temp code for showing player, dealer score</p> */}
           <p>Dealer: {dealerScore}</p>
           <p>Player: {playerScore}</p>
         </section>
+        {gameOver ? <GameOver /> : null}
       </GameBoard>
     </>
   );

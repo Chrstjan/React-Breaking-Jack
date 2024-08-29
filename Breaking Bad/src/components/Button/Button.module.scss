@@ -1,14 +1,23 @@
 .buttonStyling {
-        border: 0;
-        background: darkgreen;
-        border-radius: 6px;
-        font-size: 23px;
-        width: 8rem;
-        height: 1.7rem;
-        color: #fff;
-  
-        &:hover {
-          scale: 1.1;
-          cursor: pointer;
-        }
+  border: 0;
+  background: darkgreen;
+  border-radius: 6px;
+  font-size: 23px;
+  width: 8rem;
+  height: 1.7rem;
+  color: #fff;
+
+  &:hover {
+    scale: 1.1;
+    cursor: pointer;
+  }
+
+  &.gameOver {
+    background: gray;
+
+    &:hover {
+      scale: none;
+      cursor: not-allowed;
+    }
+  }
 }

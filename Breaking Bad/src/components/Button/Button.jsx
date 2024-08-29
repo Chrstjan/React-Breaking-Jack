@@ -1,9 +1,15 @@
-import style from "./Button.module.scss"
+import style from "./Button.module.scss";
 
-export const Button = ({action}) => {
-    return (
-        <>
-            <button onClick={() => action()} className={style.buttonStyling}>Roll</button>
-        </>
-    )
-}
+export const Button = ({ action, gameOver }) => {
+  return (
+    <>
+      <button
+        disabled={gameOver}
+        onClick={() => action()}
+        className={`${style.buttonStyling} ${gameOver ? style.gameOver : null}`}
+      >
+        Roll
+      </button>
+    </>
+  );
+};
