@@ -1,6 +1,6 @@
 import style from "./Button.module.scss";
 
-export const Button = ({ action, gameOver }) => {
+export const Button = ({ action, text, gameOver }) => {
   return (
     <>
       <button
@@ -8,7 +8,7 @@ export const Button = ({ action, gameOver }) => {
         onClick={() => action()}
         className={`${style.buttonStyling} ${gameOver ? style.gameOver : null}`}
       >
-        Roll
+        {text}
       </button>
     </>
   );

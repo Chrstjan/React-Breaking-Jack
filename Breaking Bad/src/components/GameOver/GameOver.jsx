@@ -1,7 +1,9 @@
+import style from "./GameOver.module.scss";
+
 export const GameOver = ({ action, dealerWon, playerWon }) => {
   return (
     <>
-      <div>
+      <div className={style.gameOverStyling}>
         <h3>Game Over!</h3>
         <button
           onClick={() => {

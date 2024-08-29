@@ -16,6 +16,8 @@ function App() {
   const [playerScore, setPlayerScore] = useState(0);
   const [dealerScore, setDealerScore] = useState(0);
 
+  const [canStand, setCanStand] = useState(false);
+
   const [playerWon, setPlayerWon] = useState(false);
   const [dealerWon, setDealerWon] = useState(false);
 
@@ -42,10 +44,24 @@ function App() {
     setPlayerDiceSide(0);
     setDealerScore(0);
     setPlayerScore(0);
+    setCanStand(false);
     setDealerWon(false);
     setPlayerWon(false);
     setGameOver(false);
     setDealersTurn(true);
+  };
+
+  const handlePlayerStand = () => {
+    setDealersTurn(true);
+    if (playerScore > dealerScore) {
+      setPlayerWon(true);
+      setGameOver(true);
+    }
+
+    if (dealerScore > playerScore) {
+      setDealerWon(true);
+      setGameOver(true);
+    }
   };
 
   useEffect(() => {
@@ -80,6 +96,10 @@ function App() {
       setDealerWon(true);
       setGameOver(true);
     }
+
+    if (playerScore >= 18) {
+      setCanStand(true);
+    }
   }, [playerScore]);
 
   useEffect(() => {
@@ -109,7 +129,14 @@ function App() {
           <div className="dice-container">
             <h3>players dice</h3>
             <Dice diceSide={playerDiceSide} />
-            <Button gameOver={gameOver} action={handleDiceThrow} />
+            <Button gameOver={gameOver} action={handleDiceThrow} text="Roll" />
+            {canStand ? (
+              <Button
+                gameOver={gameOver}
+                action={handlePlayerStand}
+                text="Stand"
+              />
+            ) : null}
           </div>
         </section>
         {gameOver ? (
