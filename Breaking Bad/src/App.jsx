@@ -16,6 +16,9 @@ function App() {
   const [playerScore, setPlayerScore] = useState(0);
   const [dealerScore, setDealerScore] = useState(0);
 
+  const [playerWon, setPlayerWon] = useState(false);
+  const [dealerWon, setDealerWon] = useState(false);
+
   const [dealersTurn, setDealersTurn] = useState(false);
 
   const [gameOver, setGameOver] = useState(false);
@@ -38,6 +41,11 @@ function App() {
     setDealerDiceSide(0);
     setPlayerDiceSide(0);
     setDealerScore(0);
+    setPlayerScore(0);
+    setDealerWon(false);
+    setPlayerWon(false);
+    setGameOver(false);
+    setDealersTurn(true);
   };
 
   useEffect(() => {
@@ -49,11 +57,13 @@ function App() {
   useEffect(() => {
     if (dealerScore === 21 && playerScore !== 21) {
       console.log("Dealer Wins!");
+      setDealerWon(true);
       setGameOver(true);
     }
 
     if (dealerScore > 21) {
       console.log("Dealer bust!");
+      setPlayerWon(true);
       setGameOver(true);
     }
   }, [dealerScore]);
@@ -61,11 +71,13 @@ function App() {
   useEffect(() => {
     if (playerScore === 21 && dealerScore !== 21) {
       console.log("Player Wins!");
+      setPlayerWon(true);
       setGameOver(true);
     }
 
     if (playerScore > 21) {
       console.log("Player bust");
+      setDealerWon(true);
       setGameOver(true);
     }
   }, [playerScore]);
@@ -100,7 +112,13 @@ function App() {
             <Button gameOver={gameOver} action={handleDiceThrow} />
           </div>
         </section>
-        {gameOver ? <GameOver /> : null}
+        {gameOver ? (
+          <GameOver
+            action={handleResetGame}
+            dealerWon={dealerWon}
+            playerWon={playerWon}
+          />
+        ) : null}
       </GameBoard>
       <PlayerCard />
       <PlayerVsDealer userScore={playerScore} dealerScore={dealerScore} />

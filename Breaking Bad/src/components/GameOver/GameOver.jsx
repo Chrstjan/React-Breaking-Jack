@@ -1,4 +1,4 @@
-export const GameOver = ({ action }) => {
+export const GameOver = ({ action, dealerWon, playerWon }) => {
   return (
     <>
       <div>
@@ -10,6 +10,8 @@ export const GameOver = ({ action }) => {
         >
           Play Again
         </button>
+        {dealerWon ? <h3>Dealer Won!</h3> : null}
+        {playerWon ? <h3>Player Won!</h3> : null}
       </div>
     </>
   );
