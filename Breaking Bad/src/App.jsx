@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { Button } from "./components/Button/Button";
 import { Dice } from "./components/Dice/Dice";
 import { GameBoard } from "./components/GameBoard/GameBoard";
-import "./App.scss";
 import { GameRules } from "./components/GameRules/GameRules";
 import { GameOver } from "./components/GameOver/GameOver";
+import PlayerCard from "./components/Scror board/PlayerCard";
+import PlayerVsDealer from "./components/Scror board/PlayerVsDealer";
+import "./App.scss";
 
 function App() {
   const [playerDiceSide, setPlayerDiceSide] = useState(0);
@@ -76,6 +78,10 @@ function App() {
     }
   }, [gameOver]);
 
+  useEffect(() => {
+    handleDealerDiceThrow();
+  }, [dealersTurn]);
+
   return (
     <>
       <GameBoard>
@@ -96,13 +102,13 @@ function App() {
             <h3>players dice</h3>
             <Dice diceSide={playerDiceSide} />
             <Button gameOver={gameOver} action={handleDiceThrow} />
+            <Button action={handleDiceThrow} />
           </div>
-          {/* <p>Temp code for showing player, dealer score</p> */}
-          <p>Dealer: {dealerScore}</p>
-          <p>Player: {playerScore}</p>
         </section>
         {gameOver ? <GameOver /> : null}
       </GameBoard>
+      <PlayerCard />
+      <PlayerVsDealer />
     </>
   );
 }
