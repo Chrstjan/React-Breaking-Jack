@@ -1,0 +1,80 @@
+.gameContainer {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 1024px;
+    width: 100%;
+    align-items: center;
+    padding: 48px 80px;
+    position: relative;
+  
+    .backgroundImage {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  
+    .gameTitle {
+      position: relative;
+      border-radius: 50px;
+      background-color: rgba(3, 3, 3, 0.5);
+      width: 100%;
+      max-width: 1241px;
+      color: #fff;
+      padding: 14px 70px;
+      font: 400 128px Inter, sans-serif;
+    }
+  
+    .cardsContainer {
+      position: relative;
+      margin-top: 60px;
+      width: 100%;
+      max-width: 1241px;
+      display: flex;
+      gap: 20px;
+  
+      .card {
+        flex: 1;
+        border-radius: 50px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px 70px 444px;
+        color: #fff;
+        font: 400 96px Inter, sans-serif;
+        white-space: nowrap;
+  
+        .cardTitle {
+          margin: 0;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+    }
+  
+    @media (max-width: 991px) {
+      padding: 0 20px;
+  
+      .gameTitle {
+        max-width: 100%;
+        font-size: 40px;
+        padding: 0 20px;
+      }
+  
+      .cardsContainer {
+        max-width: 100%;
+        margin-top: 40px;
+        flex-direction: column;
+  
+        .card {
+          font-size: 40px;
+          max-width: 100%;
+          white-space: initial;
+          padding: 0 20px 110px;
+        }
+      }
+    }
+  }
+  
