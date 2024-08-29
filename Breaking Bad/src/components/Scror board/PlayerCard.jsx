@@ -1,10 +1,11 @@
 import styles from "./PlayerVsDealer.module.scss";
 
-const PlayerCard = ({ name, className }) => {
+const PlayerCard = ({ name, className, score, dealerScore }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <h2 className={styles.cardTitle}>{name}</h2>
-      <p>3</p>
+      <p>{score}</p>
+      <p>{dealerScore}</p>
     </div>
   );
 };

@@ -2,10 +2,10 @@ import PlayerCard from "./PlayerCard";
 import styles from "./PlayerVsDealer.module.scss";
 import img1 from "../../assets/game.png";
 
-const PlayerVsDealer = () => {
+const PlayerVsDealer = ({ userScore, dealerScore }) => {
   const players = [
-    { name: "Player", className: styles.playerCard },
-    { name: "Dealer", className: styles.dealerCard },
+    { name: "Player", className: styles.playerCard, userScore },
+    { name: "Dealer", className: styles.dealerCard, dealerScore },
   ];
 
   return (
@@ -18,6 +18,8 @@ const PlayerVsDealer = () => {
             key={index}
             name={player.name}
             className={player.className}
+            score={player.userScore}
+            dealerScore={player.dealerScore}
           />
         ))}
       </section>

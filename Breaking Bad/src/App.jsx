@@ -78,10 +78,6 @@ function App() {
     }
   }, [gameOver]);
 
-  useEffect(() => {
-    handleDealerDiceThrow();
-  }, [dealersTurn]);
-
   return (
     <>
       <GameBoard>
@@ -102,13 +98,12 @@ function App() {
             <h3>players dice</h3>
             <Dice diceSide={playerDiceSide} />
             <Button gameOver={gameOver} action={handleDiceThrow} />
-            <Button action={handleDiceThrow} />
           </div>
         </section>
         {gameOver ? <GameOver /> : null}
       </GameBoard>
       <PlayerCard />
-      <PlayerVsDealer />
+      <PlayerVsDealer userScore={playerScore} dealerScore={dealerScore} />
     </>
   );
 }
