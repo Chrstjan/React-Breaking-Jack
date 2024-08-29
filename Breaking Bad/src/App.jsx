@@ -32,6 +32,12 @@ function App() {
     setDealersTurn(false);
   };
 
+  const handleResetGame = () => {
+    setDealerDiceSide(0);
+    setPlayerDiceSide(0);
+    setDealerScore(0);
+  };
+
   useEffect(() => {
     if (dealersTurn) {
       handleDealerDiceThrow();
