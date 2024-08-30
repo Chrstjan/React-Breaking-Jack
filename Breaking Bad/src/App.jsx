@@ -17,6 +17,7 @@ function App() {
   const [dealerScore, setDealerScore] = useState(0);
 
   const [canStand, setCanStand] = useState(false);
+  const [dealerStand, setDealerStand] = useState(false);
 
   const [playerWon, setPlayerWon] = useState(false);
   const [dealerWon, setDealerWon] = useState(false);
@@ -30,6 +31,10 @@ function App() {
     setPlayerDiceSide(randNumber);
     setPlayerScore((prevScore) => prevScore + randNumber);
     setDealersTurn(true);
+
+    if (dealerStand) {
+      setDealersTurn(false);
+    }
   };
 
   const handleDealerDiceThrow = () => {
@@ -49,6 +54,7 @@ function App() {
     setPlayerWon(false);
     setGameOver(false);
     setDealersTurn(true);
+    setDealerStand(false);
   };
 
   const handlePlayerStand = () => {
@@ -63,6 +69,11 @@ function App() {
       setGameOver(true);
     }
   };
+
+  const handleDealerStand = () => {
+    setDealersTurn(false);
+    setDealerStand(true);
+  }
 
   useEffect(() => {
     if (dealersTurn) {
@@ -81,6 +92,20 @@ function App() {
       console.log("Dealer bust!");
       setPlayerWon(true);
       setGameOver(true);
+    }
+
+    if (dealerScore >= 18) {
+      const randomDec = Math.floor(Math.random() * 2);
+      if (randomDec === 0) {
+        handleDealerStand();
+        console.log("Stand");
+        
+      }
+      if (randomDec === 1) {
+        setDealersTurn(true);
+        console.log("Hit");
+        setDealerStand(false);
+      }
     }
   }, [dealerScore]);
 

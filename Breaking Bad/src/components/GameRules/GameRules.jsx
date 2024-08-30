@@ -18,7 +18,12 @@ export const GameRules = ({ action }) => {
             <img src="./src/assets/background.jpg" />
             <h2>Blackjack with dices</h2>
           </span>
-          <p>Game rules text here</p>
+          <span className={style.gameRules}>
+            <p>Terninge-Breaking Blackjack Regler</p>
+            <p>Du spiller mod den berygtede meth-dealer, Heisenberg, og hver spiller har én terning.</p>
+            <p>Spilleren kan vælge at "stå" (holde sig til den nuværende sum). ved 18 point</p>
+            <p>Formål: At få en samlet sum tættere på 21 end Heisenberg uden at gå over (buste).</p>
+          </span>
           <button onClick={() => handleCloseModal()}>Start Gme</button>
         </div>
       ) : null}
