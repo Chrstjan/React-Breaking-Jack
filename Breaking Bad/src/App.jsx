@@ -16,6 +16,8 @@ function App() {
   const [playerScore, setPlayerScore] = useState(0);
   const [dealerScore, setDealerScore] = useState(0);
 
+  const [diceThrown, setDiceThrown] = useState(false);
+
   const [canStand, setCanStand] = useState(false);
   const [dealerStand, setDealerStand] = useState(false);
 
@@ -26,16 +28,35 @@ function App() {
 
   const [gameOver, setGameOver] = useState(false);
 
+  let diceAnimation = false;
+
   const handleDiceThrow = () => {
     const randNumber = Math.floor(Math.random() * 6) + 1;
     setPlayerDiceSide(randNumber);
     setPlayerScore((prevScore) => prevScore + randNumber);
     setDealersTurn(true);
+    diceAnimation = true;
+    console.log(diceThrown);
+    setDiceThrown(diceAnimation);
+    if (diceThrown) {
+      diceAnimation = false;
+      console.log("Nice Animation");
+      setDiceThrown(diceAnimation);
+    }
 
     if (dealerStand) {
       setDealersTurn(false);
     }
   };
+
+  useEffect(() => {
+    let time = 0;
+    time = setTimeout(() => {
+      setDiceThrown(false);
+    }, 1000)
+    return () => clearTimeout(time) 
+    
+  }, [diceThrown])
 
   const handleDealerDiceThrow = () => {
     const randNumber = Math.floor(Math.random() * 6) + 1;
@@ -153,12 +174,12 @@ function App() {
               <img src="./src/assets/Heisenberg.jpg" alt="Heisenberg" />
               <h3>dealers dice</h3>
             </span>
-            <Dice diceSide={dealerDiceSide} type="dealerDice" />
+            <Dice diceSide={dealerDiceSide} type="dealerDice" rolling={diceThrown} />
           </div>
           <div className="dice-container">
             <h3>players dice</h3>
-            <Dice diceSide={playerDiceSide} />
-            <Button gameOver={gameOver} action={handleDiceThrow} text="Roll" />
+            <Dice diceSide={playerDiceSide} rolling={diceThrown} />
+            <Button gameOver={gameOver} throwing={diceThrown} action={handleDiceThrow}  text="Rock'n'Roll" />
             {canStand ? (
               <Button
                 gameOver={gameOver}
