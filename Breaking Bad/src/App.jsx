@@ -68,6 +68,10 @@ function App() {
       setDealerWon(true);
       setGameOver(true);
     }
+
+    if (dealerStand) {
+      setDealersTurn(false);
+    }
   };
 
   const handleDealerStand = () => {
