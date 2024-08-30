@@ -33,7 +33,9 @@ function App() {
   const handleDiceThrow = () => {
     const randNumber = Math.floor(Math.random() * 6) + 1;
     setPlayerDiceSide(randNumber);
-    setPlayerScore((prevScore) => prevScore + randNumber);
+    setTimeout(() => {
+      setPlayerScore((prevScore) => prevScore + randNumber);
+    }, 1000)
     setDealersTurn(true);
     diceAnimation = true;
     console.log(diceThrown);
@@ -61,8 +63,18 @@ function App() {
   const handleDealerDiceThrow = () => {
     const randNumber = Math.floor(Math.random() * 6) + 1;
     setDealerDiceSide(randNumber);
-    setDealerScore((prevScore) => prevScore + randNumber);
+    setTimeout(() => {
+      setDealerScore((prevScore) => prevScore + randNumber);
+    }, 1000)
     setDealersTurn(false);
+    // diceAnimation = true;
+    // console.log(diceThrown);
+    // setDiceThrown(diceAnimation);
+    // if (diceThrown) {
+    //   diceAnimation = false;
+    //   console.log("Nice Animation");
+    //   setDiceThrown(diceAnimation);
+    // }
   };
 
   const handleResetGame = () => {
@@ -127,9 +139,9 @@ function App() {
         
       }
       if (randomDec === 1) {
-        setDealersTurn(true);
+        // setDealersTurn(true);
         console.log("Hit");
-        setDealerStand(false);
+        // setDealerStand(false);
       }
     }
   }, [dealerScore]);
@@ -167,7 +179,7 @@ function App() {
           <span className="element-container">5</span>eaking{" "}
           <span className="element-container">B</span>lackjack
         </h1>
-        <GameRules action={handleDealerDiceThrow} />
+        <GameRules />
         <section>
           <div className="dice-container dealer-styling">
             <span className="dealer-container">
@@ -179,7 +191,7 @@ function App() {
           <div className="dice-container">
             <h3>players dice</h3>
             <Dice diceSide={playerDiceSide} rolling={diceThrown} />
-            <Button gameOver={gameOver} throwing={diceThrown} action={handleDiceThrow}  text="Rock'n'Roll" />
+            <Button gameOver={gameOver} throwing={diceThrown} action={handleDiceThrow}  text="rock'n'roll" />
             {canStand ? (
               <Button
                 gameOver={gameOver}

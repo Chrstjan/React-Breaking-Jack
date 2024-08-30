@@ -4,14 +4,13 @@ import img1 from "../../assets/game.png";
 
 const PlayerVsDealer = ({ userScore, dealerScore }) => {
   const players = [
+    { name: "dealer", className: styles.dealerCard, dealerScore },
     { name: "Player", className: styles.playerCard, userScore },
-    { name: "Dealer", className: styles.dealerCard, dealerScore },
   ];
 
   return (
     <main className={styles.gameContainer}>
       <img src={img1} className={styles.backgroundImage} alt="" />
-      <h1 className={styles.gameTitle}>Player vs Dealer</h1>
       <section className={styles.cardsContainer}>
         {players.map((player, index) => (
           <PlayerCard
